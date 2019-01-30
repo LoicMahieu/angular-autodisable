@@ -129,7 +129,10 @@
         promisesTriggered++;
 
         promise
-          .then(promiseDone, promiseDone);
+          .then(promiseDone, function(err) {
+            promiseDone();
+            return Promise.reject(err);
+          });
       };
 
       /**
